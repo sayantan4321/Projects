@@ -10,8 +10,8 @@
     <div class="container">
 
         <h1>Password Generator</h1>
-        <div class="display_container">
-            <input readonly placeholder="Generated Password" class="display" data-passwordDisplay> 
+        <div class="display-container">
+            <input readonly placeholder="Password" class="display" data-passwordDisplay> 
             <!--  data-passwordDisplay is custom attribute -->
 
             <button data-copy>
@@ -30,19 +30,19 @@
             <input type="range" min="1" max="20" class="slider" step="1" data-lengthSlider>
             
             <!-- Checkboxes -->
-            <div>
+            <div class="check">
                 <input type="checkbox" id="uppercase">
                 <label for="uppercase">Include UpperCase letters</label>
             </div>
-            <div>
+            <div class="check">
                 <input type="checkbox" id="lowercase">
                 <label for="lowercase">Include LowerCase letters</label>
             </div>
-            <div>
+            <div class="check">
                 <input type="checkbox" id="numbers">
                 <label for="numbers">Include Numbers</label>
             </div>
-            <div>
+            <div class="check">
                 <input type="checkbox" id="symbols">
                 <label for="symbols">Include Symbols</label>
             </div>
@@ -50,10 +50,12 @@
             <!-- Strength -->
              <div class="strength-container">
                 <p>Strength</p>
-                <div strength-indicator></div>
+                <div class="indicator" strength-indicator></div>
              </div>
+             <!-- Genarate password button-->
+             <button class="generate-btn">Generate Password</button> 
         </div>
-        <button class="generate-btn">Generate Password</button>
+        
     </div>
     <script src="./script.js"></script>
 </body>

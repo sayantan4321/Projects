@@ -19,6 +19,7 @@ let password = "";
 let passwordLength = 10; // default length of password
 let checkboxCount = 0; // at starting one checkbox is checked
 handleSlider();
+setIndicator("#ccc") // set the color to grey at first
 
 // steps: 
 // 1. copyPassword()
