@@ -33,10 +33,15 @@ setIndicator("#ccc") // set the color to grey at first
 function handleSlider() {
     inputSlider.value = passwordLength; // set the value of slider to password length
     lengthDisplay.innerText = passwordLength; // set the value of length display to password length
+
+    // to slide the cursor color till the min to current position value
+    const min = inputSlider.min;
+    const max = inputSlider.max;
+    inputSlider.style.backgroundSize = ((passwordLength - min)*100 / (max -min)) + "% 100%";
 }
 function setIndicator(color) {
     indicator.style.backgroundColor = color;
-    // shadow in CSS
+    indicator.style.boxShadow = `0px 0px 12px 1px ${color}`;
 }
 function getRandomInterger(min, max){
     return Math.floor(Math.random() * (max-min)) + min;
