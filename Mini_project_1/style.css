@@ -135,7 +135,10 @@ h1 {
     background-image: linear-gradient(var(--vb-violet), var(--vb-violet));
     background-repeat: no-repeat;
 }
-.slider::-webkit-slider-thumb { /* accessing the thumb with the sudo selector */ 
+.slider:focus {
+    outline: 3px solid  rgba(243, 211, 7); /* var(--vb-yellow); */
+}
+.slider::-webkit-slider-thumb { /* accessing the thumb with the sudo selector --> works for only google chrome */ 
     appearance: none;
     position: relative; /* slider line will not come in thumb background */
     height: 2rem;
@@ -148,10 +151,28 @@ h1 {
     transition: all 100ms ease-in;
     z-index: 1;
 }
-.slider:focus {
-    outline: 3px solid  rgba(243, 211, 7); /* var(--vb-yellow); */
-}
+
 .slider::-webkit-slider-thumb:hover {
+    outline: 2px solid var(--vb-yellow);
+    background-color: var(--dk-voilet);
+    box-shadow: 0px 0px 25px 5px rgba(255, 229,61);
+
+}
+.slider::-moz-range-thumb { /* accessing the thumb with the sudo selector --> works for only google chrome */ 
+    appearance: none;
+    position: relative; /* slider line will not come in thumb background */
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    background-color: rgba(243, 211, 7);
+    cursor: pointer;
+    /* margin-top: -1px; */
+    box-shadow: 0px 0px 20px 0px rgba(245, 217, 35, 0.5);
+    transition: all 100ms ease-in;
+    z-index: 1;
+}
+
+.slider::-moz-range-thumb:hover {
     outline: 2px solid var(--vb-yellow);
     background-color: var(--dk-voilet);
     box-shadow: 0px 0px 25px 5px rgba(255, 229,61);
