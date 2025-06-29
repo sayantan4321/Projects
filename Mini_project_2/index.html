@@ -18,23 +18,35 @@
 
         <div class="weather-container">
             <!-- grant location part container -->
-             <div class="grant-location-container">
-                <img src="./Location.png" alt="location_symbol" width="80" height="80" loading="lazy">
-                <p>Grant Chut Access</p>
-                <p>Allow access to get weather Information</p>
-                <button class="btn" data-grantLoc>Grant Access</button>
-             </div>
+            <div class="grant-location-container">
+            <img src="./Location.png" alt="location_symbol" width="80" height="80" loading="lazy">
+            <p>Grant Location Access</p>
+            <p>Allow access to get weather Information</p>
+            <button class="btn" data-grantLoc>Grant Access</button>
+            </div>
 
-             <!--Search Form -> Form Container -->
-             <form class="form-container" data-searchForm>
-                <input placeholder="Search for city.." data-searchInput>
-                <button class="'btn">
-                    <img src="./search.png" width="80" height="80" loading="lazy">
-                </button>
-             </form>
+            <!--Search Form -> Form Container -->
+            <form class="form-container" data-searchForm>
+            <input placeholder="Search for city.." data-searchInput>
+            <button class="'btn">
+                <img src="./search.png" width="80" height="80" loading="lazy">
+            </button>
+            </form>
 
-             <!--loading Screen Container -->
-             
+            <!--loading Screen Container -->
+            <div class="Loading-container">
+                <img src="./loading.png" width="150" height="150" loading="lazy">
+                <p>Loading</p>
+            </div>
+            
+            <!-- Show User weather info -->
+            <div class="user-info-container">
+
+                <div class="name">
+                    <p data-cityName></p> <!--Dynamic use case -->
+                    <img data-countryIcon> <!--Dynamic -->
+                </div>
+            </div>
         </div>
     </div>
 
