@@ -54,13 +54,14 @@ function switchTab(clickedTab) {
         currentTab = clickedTab;
         currentTab.classList.add("current-tab");
 
-        if(!searchForm.classList.contains("active")){ // if searchform is not selected, means not in search wearther page
-            userInfoContainer.classList.remove("active");
-            grantaccessContainer.classList.remove("active");
-            searchForm.classList.add("active");
+        if(!searchForm.classList.contains("active")){ // if searchform is not active, so we have to make it active
+            // if its does not contains active class that means its not visible yet and we clicked means we want to make it visible.
+            userInfoContainer.classList.remove("active"); //need to disable
+            grantaccessContainer.classList.remove("active"); //need to disable
+            searchForm.classList.add("active"); //need to enable
         }
-        else{
-            searchForm.classList.remove("active");
+        else{  // switching from search wearther to your weather
+            searchForm.classList.remove("active"); 
             userInfoContainer.classList.remove("active");
             // getFromSessionStorage();
         }
