@@ -58,16 +58,75 @@ function getFromSessionStorage(){
 async function fetchUserWeatherInfo(coOrdinates) {
     const {lat,lon} = coOrdinates;
     grantlocationcontainer.classList.romove("active"); // invisible this
-    LoadingScreen.classList.add("active") // loader visible
+    LoadingScreen.classList.add("active"); // loader visible
 
     // API CALL
     try {
         const response = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
         );
-        const data = await result.json();
+        const data = await result.json(); //await till get the data
+        LoadingScreen.classList.remove("active"); // loader work done
+        // nned to shpw the location weather details
+        userInfoContainer.classList.add("active"); 
+
+        // func will take nessesary data from the json values
+        renderWeatherInfo(data);
+
     }
     catch(err) {
-        
+
     }
 }
+
+// Optional chainging operator:  this makes easy to access nested properties of JSON obj. 
+// If the property does not exist then it will return = undifined
+function renderWeatherInfo(weatherInfo) {
+    // need to fetch the elements
+    const cityName = document.querySelector("[data-cityName]");
+    const countryIcon = document.querySelector("[data-countryIcon]");
+    const desc = document.querySelector("[data-weatheDesc]");
+    const weatherIcon = document.querySelector("[data-WeatherIcon]");
+    const temp = document.querySelector("[data-temp}");
+    const windSpeed = document.querySelector("[data-windSpeed]");
+    const humidity = document.querySelector("[data-humidity]");
+    const cloudiness = document.querySelector("[data-cloudyness]");
+
+    // fetch values from json obj to UI
+    cityName.innerHTML =weatherInfo?.name;
+    countryIcon.src = `https://flagsapi.com/${weatherInfo?.sys?.country.toLowerCase()}/shiny/144x108.png`;
+    desc.innerText = weatherInfo?.weather?.[0]?.description;
+    weatherIcon.src = `http://openweathermap.org/img/w/${weatherInfo?.weather?.[0]?.icon}.png`;
+    temp.innerText = weatherInfo?.main?.temp;
+    windSpeed.innerText = weatherInfo?.wind?.speed;
+    humidity.innerText = weatherInfo?.main?.humidity;
+    cloudiness.innerText = weatherInfo?.clouds?.all;
+}
+
+
+const grantAccessButton = document.querySelector("[data-grantAccess]");
+grantAccessButton.addEventListener("click", getLocation) // func call
+
+// For your location tab we need the location access from browser which was geo-Location 
+function getLocation() {
+    if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition); // using getCurrentPosition we will get user's location
+    }
+    else {
+        alert("No geolocation Support");
+    }
+}
+function showPosition(position){
+    const userCoordinates = { //obj
+        lat: position.coords.latitude,
+        lon: position.coords.longitude,
+    }
+    // set the co-ordiantes into session storage: storing  as a form of string
+    sessionStorage.setItem("user-coordinates", JSON.stringify(userCoordinates));
+    fetchUserWeatherInfo(userCoordinates); 
+
+    // console.log(lati);
+    // console.log(longi);  
+   
+}
+
