@@ -9,7 +9,7 @@ const userInfoContainer = document.querySelector(".user-info-container")
 
 
 let currentTab = userTab; // default when page loads
-const API_KEY = "";
+const API_KEY = "e22236e310220dddd4415abe79358d9a";
 currentTab.classList.add("current-tab") // adding css property added in this current tab
 
 // now after click two tabs need to be switch each other
@@ -90,22 +90,24 @@ function renderWeatherInfo(weatherInfo) {
     // need to fetch the elements
     const cityName = document.querySelector("[data-cityName]");
     const countryIcon = document.querySelector("[data-countryIcon]");
-    const desc = document.querySelector("[data-weatheDesc]");
+    const desc = document.querySelector("[data-weatherDesc]");
     const weatherIcon = document.querySelector("[data-WeatherIcon]");
-    const temp = document.querySelector("[data-temp}");
+    const temp = document.querySelector("[data-temp]");
     const windSpeed = document.querySelector("[data-windSpeed]");
     const humidity = document.querySelector("[data-humidity]");
     const cloudiness = document.querySelector("[data-cloudyness]");
-
+ 
+    console.log(weatherInfo);
+    
     // fetch values from json obj to UI
     cityName.innerText = weatherInfo?.name;
-    countryIcon.src = `https://flagsapi.com//shiny/144x108/${weatherInfo?.sys?.country.toLowerCase()}.png`;
+    countryIcon.src = `https://flagsapi.com/${weatherInfo?.sys?.country}/flat/64.png`;
     desc.innerText = weatherInfo?.weather?.[0]?.description;
     weatherIcon.src = `http://openweathermap.org/img/w/${weatherInfo?.weather?.[0]?.icon}.png`;
-    temp.innerText = weatherInfo?.main?.temp;
-    windSpeed.innerText = weatherInfo?.wind?.speed;
-    humidity.innerText = weatherInfo?.main?.humidity;
-    cloudiness.innerText = weatherInfo?.clouds?.all;
+    temp.innerText = `${weatherInfo?.main?.temp} °C`;
+    windSpeed.innerText = `${weatherInfo?.wind?.speed}m/s`;
+    humidity.innerText = `${weatherInfo?.main?.humidity}%`;
+    cloudiness.innerText = `${weatherInfo?.clouds?.all}%`;
 }
 
 
