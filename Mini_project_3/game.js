@@ -51,8 +51,32 @@ function swapTurn() {
 function checkGameOver() {
     let answer = "";
     winningPositions.forEach((position) => {
-        if((gameGrid[position[0]] !== "" || ))
-    })
+        if((gameGrid[position[0]] !== "" || gameGrid[position[1]] !== "" || gameGrid[position[2]] !== "")
+            && (gameGrid[position[0]] === gameGrid[position[1]]) && (gameGrid[position[1]] === gameGrid[position[2]])) {
+        
+                //check if winner is X
+                if(gameGrid[position[0]] === "X") {
+                    answer = "X";
+                }
+                else{
+                    answer = "O";
+                }
+                // disable pointer events immidiately
+                boxes.forEach((box) => {
+                    box.style.pointerEvents = "none"; // otherwise X and O both wins
+                })
+                //now need to highlight the boxes who wons
+                boxes[position[0]].classList.add("win");
+                boxes[position[1]].classList.add("win");
+                boxes[position[2]].classList.add("win");
+        }
+    });
+    // so we have a winner now
+    if(answer !== ""){
+        gameInfo.innerText = `Winner Player - ${answer}`;
+        newGameBtn.classList.add("active");
+        return;
+    }
 }
 
 // fill X or O depends on current user 
@@ -60,8 +84,8 @@ function handleClick(index) {
     if(gameGrid[index] === ""){
         boxes[index].innerText = currentPlayer; // UI update
         gameGrid[index] = currentPlayer // initGame array value update
-
-        boxes[index].style.pointerEvents = "none"; // once marked 
+        
+        boxes[index].style.pointerEvents = "none"; // once marked no more clicks
         swapTurn();
         checkGameOver();
     }
